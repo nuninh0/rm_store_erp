@@ -1,0 +1,20 @@
+#Arquivo com segredos e variáveis de ambiente. NUNCA ENVIAR
+.env 
+
+#ambiente virtual do python. Essencial ignorar
+venv/
+
+#banco de dados de desenvolvimento SQLite
+db.sqlite3
+
+#Arquivos de cache compilados do python 
+__pycache__/
+*.__pyc 
+
+#pasta onde o 'collectstatic' do django salva os arquivos para produção
+#essa pasta deve ser gerada no servidor, não armazenada no repositorio
+staticfiles/
+
+#arquivos e pastas de configurações de editores de código comuns 
+.vscode/
+.idea/
