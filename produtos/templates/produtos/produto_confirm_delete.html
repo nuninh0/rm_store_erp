@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Confirmar Desativação{% endblock %}
+
+{% block content %}
+<div class="container-confirmar"> 
+    <h2>Confirmar Desativação</h2>
+    <p>Você tem certeza que deseja desativar o produto "{{ produto.nome }}"?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Sim, desativar</button>
+        <a href="{% url 'lista_produtos' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}PDV - Frente de Caixa{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        <h4>Buscar Produto</h4>
+        <form action="{% url 'adicionar_produto_pdv' %}" method="post" class="mb-4">
+            {% csrf_token %}
+            <div class="input-group">
+                <input type="text" name="codigo_produto" class="form-control" placeholder="Código do Produto" required autofocus>
+                <input type="number" name="quantidade" value="1" min="1" class="form-control" style="max-width: 80px;">
+                <button type="submit" class="btn btn-primary">Adicionar</button>
+            </div>
+        </form>
+    
+        <hr>
+    
+        <h4>Finalizar Venda</h4>
+        <form action="{% url 'finalizar_venda' %}" method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="forma_pagamento" class="form-label">Forma de Pagamento</label>
+                <select name="forma_pagamento" id="forma_pagamento" class="form-select">
+                    {% for value, label in formas_pagamento %}
+                        <option value="{{ value }}">{{ label }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-success btn-lg">Finalizar Venda</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-md-8">
+        <h3>Carrinho de Compras</h3>
+        <div class="card">
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th class="text-center">Qtd.</th>
+                            <th class="text-end">Preço Unit.</th>
+                            <th class="text-end">Subtotal</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in carrinho %}
+                        <tr>
+                            <td>{{ item.nome }}</td>
+                            <td class="text-center"> {{ item.quantidade }}</td>
+                            <td class="text-end">R$ {{ item.preco|stringformat:".2f" }}</td>
+                            <td class="text-end">R$ {{ item.subtotal|stringformat:".2f" }}</td>
+                            <td class="text-end">
+                                <a href="{% url 'remover_produto_pdv' produto_codigo=item.codigo %}" class="btn btn=danger btn-sm">X</a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="5" class="text-center">Carrinho vazio.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr class="table-dark">
+                            <td colspan="3" class="text-end"><strong>TOTAL</strong></td>
+                            <td class="text-end"><strong>R$ {{ valor_total|stringformat:".2f" }}</strong></td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
+                </table>    
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

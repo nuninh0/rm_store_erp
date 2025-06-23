@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %} {% block title %}Editar Estoque{% endblock %}
+
+{% block content %}
+<h2>Editar Estoque para: <strong>{{ produto_nome }}</strong></h2>
+<form method="post">
+    {%csrf_token %}
+
+    {{ form|crispy }} <button type="submit" class="btn btn-success">Salvar Alterações</button>
+    <a href="{% url 'lista_estoque' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+    {% endblock %}

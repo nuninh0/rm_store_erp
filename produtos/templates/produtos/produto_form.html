@@ -1,0 +1,25 @@
+{%extends 'base.html' %}
+
+{% block title %}{% if produto %}Editar Produto{% else %}Cadastrar Produto{% endif %}{% endblock %}
+
+{% block content %}
+<h2>{% if produto %}Editar Produto{% else %}Cadastrar Novo Produto{% endif %}</h2>
+<form method="post">
+    {% csrf_token %}
+    
+    <div class="mb-3">
+        <label for="'id_nome" class="form-label">Nome do Produto</label>
+        {{ form.nome.errors }}
+        <input type="text" name="nome" value="{{ form.nome.valeu|default:''}}" id="id_nome" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label for="id_preco" class="form-label">Preço</label>
+        {{ form.preco.errors }}
+        <input type="number" step="0.01" name="preco"  value="{{ form.preco.value|default:'' }}" id="id_preco" class="form-control">
+    </div>
+
+    <button type="submit" class="btn btn-success">Salvar</button>
+    <a href="{% url 'lista_produtos' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}
