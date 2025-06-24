@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Página Inicial{% endblock %}
+
+{% block content %}
+<div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-5 fw-bold">Bem-vindo ao Sistema RM Store</h1>
+    <div class="col-lg-6 mx-auto">
+        <p class="lead mb-4">Selecione uma das opcões abaixo para começar.></p>
+    </div>
+</div>
+
+<div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+    <div class="col">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+                <h4 class="card-text">Frente de Caixa (PDV)</h4>
+                <p class="card-text">Acesse a frente de caixa para registrar novas vendas rapidamente </p>
+                <a href="{% url 'pdv' %}" class="btn bn-primary">Acessar PDV</a>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+                <h4 class="card-title">Gerenciar Produtos</h4>
+                <p class="card-text">Adicione, edite ou desative produtos do seu catálogo.</p>
+                <a href="{% url 'listar_produtos' %}" class="btn btn-secondary">Ver produtos</a>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+                <h4 class="card-title">Controle de Estoque</h4>
+                <p class="card-text">Visualize e ajuste as quantidades de produtos em estoque. </p>
+                <a href="{% url 'lista_estoque' %}" class="btn btn-secondary">Ver Estoque</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
