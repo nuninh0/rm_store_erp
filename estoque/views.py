@@ -2,14 +2,16 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Estoque
 from django.db.models import F #para operações de banco de dados mais seguras 
 from .forms import EstoqueForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required
 def lista_estoque(request):
     #.select_related('produto') otimiza a consulta, buscando o dados do produto
     #relacionando na mesma query, evitando consultas extras no loop do template
     estoques = Estoque.objects.select_related('produto').filter(produto__ativo=True).order_by('produto__nome')
     return render(request, 'estoque/lista_estoque.html', {'estoques': estoques})
-
+@login_required
 def editar_estoque(request, pk):
     #aqui, o 'pk' é da tabela Estoque, não do produto.
     estoque_item = get_object_or_404(Estoque, pk=pk)
