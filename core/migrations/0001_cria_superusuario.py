@@ -23,9 +23,7 @@ def cria_superusuario(apps, schema_editor):
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('core', '0001_initial'),
-    ]
+    dependencies = []
 
     operations = [
         migrations.RunPython(cria_superusuario),
