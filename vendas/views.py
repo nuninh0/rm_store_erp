@@ -5,10 +5,10 @@ from django.db import transaction
 from .models import Venda, ItemVenda
 from produtos.models import Produto
 from estoque.models import Estoque
-from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
-@login_required
+
 def pdv(request):
     #O carrinho é armazenado na sessão de Django
     carrinho_session = request.session.get('carrinho', {})
@@ -40,7 +40,7 @@ def pdv(request):
         'formas_pagamento': formas_pagamento
     }
     return render(request, 'vendas/pdv.html', context)
-@login_required
+
 def adicionar_produto_pdv(request):
     if request.method == 'POST':
         codigo_produto = request.POST.get('codigo_produto')
@@ -72,7 +72,7 @@ def adicionar_produto_pdv(request):
             messages.error(request, f"Produto com código '{codigo_produto} não encontrado.")
     return redirect('pdv')
 
-@login_required
+
 def remover_produto_pdv(request, produto_codigo):
     carrinho = request.session.get('carrinho', {})
     if produto_codigo in carrinho:
@@ -81,7 +81,7 @@ def remover_produto_pdv(request, produto_codigo):
         messages.info(request, "Produto removido do carrinho.")
     return redirect('pdv')
 
-@login_required
+
 @transaction.atomic
 def finalizar_venda(request):
     if request.method == 'POST':
@@ -123,7 +123,7 @@ def finalizar_venda(request):
 
     return redirect('pdv')
 
-@login_required
+
 def comprovante_venda(request, venda_id):
     venda = get_object_or_404(Venda, pk=venda_id)
     #usamos o 'related_name' que definimos no modelo para pegar 
