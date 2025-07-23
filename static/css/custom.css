@@ -1,0 +1,64 @@
+:root {
+    --cor-fundo-escuro : #122130;
+    --cor-dourado: #d1b516;
+    --cor-dourado-hover: #a38218;
+    --cor-texto-principal: #f8f9fa;
+    --cor-texto-dourado: #122130;
+
+}
+
+/* ---Barra de Navegação---*/
+.navbar.bg-dark {
+    background-color: var(--cor-fundo-escuro) !important;
+}
+
+/* Cor dos links do navbar*/
+.navbar .nav-link {
+    color: rgba(255, 255, 255, 0.8)
+}
+
+/* Cor dos links ao passar o mouse ou quando ativos */
+.navbar .nav-link:hover,
+.navbar .nav-link.active,
+.navbar-brand:hover {
+    color: var(--cor-dourado);
+}
+
+/*---BOTÕES---*/
+.btn-primary {
+    background-color: var(--cor-dourado);
+    border-color: var(--cor-dourado);
+    color: var(--cor-texto-dourado);
+    font-weight: bold;
+}
+
+.btn-primary:hover {
+    background-color: var(--cor-dourado-hover);
+    border-color: var(--cor-dourado-hover);
+    color: var(--cor-texto-dourado);
+}
+
+.btn-danger {
+    font-weight: bold;
+}
+
+a{
+    color: var(--cor-dourado);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--cor-dourado-hover);
+    text-decoration: underline;
+}
+
+h2 {
+    color: var(--cor-fundo-escuro);
+    font-weight: bold;
+}
+
+.table > thead {
+    background-color: var(--cor-fundo-escuro);
+    color: var(--cor-dourado);
+    text-transform: uppercase;
+}
